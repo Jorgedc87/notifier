@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="resources/css/style.css">
+</head>
+<body>
+    <header>
+        <div>Logo</div>
+        <% if(login) { %>
+        <div class="user-buttons">
+            <div><%= name %></div>
+            <div><a href="/logout" class="btn-logout">Logout</a></div>
+        </div>
+        <% }else{ %>
+            <div class="user-buttons">
+                <a href="/login" class="btn-loginMenu">Login</a>
+            </div>
+        <% } %>
+    </header>
+    <nav>
+        <div class="navbar">
+            <!-- <hr> -->
+            <a href="/" class="active">Inicio</a>
+            <!-- <hr> -->
+            <a href="admin">Admin</a>
+            <!-- <hr> -->
+            <a href="">Usuarios</a>
+        </div>
+    </nav>
+    <main>
+
+        <h1>Página de inicio</h1>
+                
+    </main>
+
+
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+    <script>
+        const socket = io("ws://localhost:3001", {
+            transports: ["websocket"],
+            auth: {
+                token: "admin"
+            }
+        });
+    </script>
+
+</body>
+</html>

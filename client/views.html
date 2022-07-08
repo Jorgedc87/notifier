@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <style>
+            body { margin: 0; padding: 0};
+            iframe { border: 0;}
+        </style>
+    </head>
+    <body>
+        <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+        <script>
+            const socket = io("ws://localhost:3001", {
+                transports: ["websocket"]
+            });
+
+            socket.on("response:url", url => {
+                document.getElementById("site-container").src = url;
+            }); 
+
+            socket.on("server:actualiza", data => {
+                document.body.innerHTML = '';
+                document.write('Apostaste ' + data.apuesta + ' y ganaste ' + data.ganancia);
+            });          
+
+            socket.on("enviaDinero", (data) => {
+                console.log(data);
+                document.write('Enviaste ' + data.ejemplo);
+                
+            });  
+            
+            
+        </script>
+        <iframe id="site-container" width="100%" height="100%" frameborder="0"></iframe>
+    </body>
+
+</html> 
